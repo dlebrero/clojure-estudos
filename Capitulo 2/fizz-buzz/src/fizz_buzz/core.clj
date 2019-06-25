@@ -13,6 +13,16 @@
     (divisivel-por? numero 5) "buzz"
     :else numero))
 
+; Capitulo 3 \/
+
 (def um-ate-15 (range 1 16))
 
+'(1 2 3 4 5 6 7)
+
 (map fizz-buzz um-ate-15)
+
+(doc map)
+
+; Vetores
+
+(vector 1 2 3 4 5)
