@@ -57,3 +57,13 @@
 (reduce + (map #(:valor %)
                (filter #(= (:tipo %) "despesa")
                        transacoes)))
+
+; Macro ->
+
+; Sem macro
+(so-valor (first transacoes))
+
+; Com macro, aqui podemos observar a odem de execução.
+(-> (first transacoes)
+    (so-valor))
+
