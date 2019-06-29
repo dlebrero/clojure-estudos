@@ -58,7 +58,7 @@
                (filter #(= (:tipo %) "despesa")
                        transacoes)))
 
-; Macro ->
+; Macro -> (Thread-First).
 
 ; Sem macro
 (so-valor (first transacoes))
