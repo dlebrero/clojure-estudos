@@ -59,11 +59,19 @@
                        transacoes)))
 
 ; Macro -> (Thread-First).
+; O resultado da função anterior é passada como primeiro parâmetro da próxima função.
 
-; Sem macro
-(so-valor (first transacoes))
+  ; Sem macro
+  (so-valor (first transacoes))
 
-; Com macro, aqui podemos observar a odem de execução.
-(-> (first transacoes)
-    (so-valor))
+  ; Com macro, aqui podemos observar a odem de execução.
+  (-> (first transacoes)
+      (so-valor))
 
+
+; Macro ->> (Thread-Last).
+; O resultado da função anterior é passada como primeiro parâmetro da próxima função.
+
+  (->> (filter despesa? transacoes)
+       (map so-valor)
+       (reduce +))
