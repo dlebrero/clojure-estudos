@@ -38,3 +38,10 @@
 (doc rem)
 
 (pst)
+
+(defn greet []
+  (println "Hello"))
+
+(greet)
+
+
