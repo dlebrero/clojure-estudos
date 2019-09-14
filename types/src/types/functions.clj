@@ -115,3 +115,18 @@
   )
 
 (messenger "peter admilson ramaldes")
+
+; Closures
+
+; The `fn` special form creates a "closure". It "closes over" the surrounding lexical scope (like `msg`, `a`, `b`, or `c` above)
+; and caputes their values beyond the lexical scope.
+
+(defn messenger-builder [greeting]
+  (fn [who] (println greeting who)))                        ; closes over greeting
+
+; greeting provided here, then goes out of scope.
+(def hello-er (messenger-builder "Hello"))
+
+; greeting value still available because hello-er is a closure
+(hello-er "World!")
+
