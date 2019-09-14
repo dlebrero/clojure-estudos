@@ -87,3 +87,31 @@
 ; Equivalent to: (fn [x y & zs] (println x y zs))
 #(println %1 %2 %&)
 
+; Applying Functions
+
+; Apply
+
+(defn plot [shape coords]
+  (apply plotxy shape coords))
+
+; Locals and Closures
+
+; let
+(let [x 1
+      y 2]
+  (+ x y))
+
+(defn capitalize-words [s]
+  (->> (clojure.string/split (str s) #"\b")
+       (map clojure.string/capitalize)
+       clojure.string/join))
+
+(defn messenger [msg]
+  (let [a 7
+        b 5
+        c (capitalize-words msg)]
+    (println a b c)
+    )
+  )
+
+(messenger "peter admilson ramaldes")
