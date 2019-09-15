@@ -54,3 +54,27 @@
 ; Removing key-value pairs
 ; The complementary operation for removing key-value pairs is `dissoc` ("dissociate"):
 (dissoc scores "Bob")
+
+; Looking up by key
+; There are several ways to look up a value in a map. The most obvious is the function `get`:
+(get scores "Angela")
+
+; When the map in question is being treated as a constant lookup table, its common to invoke the map itself,
+; treating it as a function:
+(def directions {:north 0
+                 :east  1
+                 :south 2
+                 :west  3})
+(directions :north)
+
+; You should not directly invoke a map unless you can guarantee it will be non-nil:
+(def bad-lookup-map nil)
+(bad-lookup-map :foo)
+
+; Looking up with a default
+; If you want to do a lookup and fall back to a default value when the key is not found, specify the default as an extra
+; parameter:
+(get scores "Sam" 0)
+(directions :northwest -1)
+
+; Using a default is also helpful to distinguish between a missing key and an existing key with a `nil` value.
