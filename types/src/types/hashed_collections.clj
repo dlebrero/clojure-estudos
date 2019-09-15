@@ -78,3 +78,42 @@
 (directions :northwest -1)
 
 ; Using a default is also helpful to distinguish between a missing key and an existing key with a `nil` value.
+
+; Check contains
+; There are two other functions that are helpful in checking whether a map contains an entry.
+(contains? scores "Fred")
+(find scores "Fred")
+
+; The `contains?` funciton is a predicate for checking containment. The `find` function finds the key/value entry
+; in a map, not just the value.
+
+; Keys or values
+; You can also get just the keys or just the values in a map:
+(keys scores)
+(vals scores)
+
+; While maps are unordered, there is a guarantee that keys, vals, and other functions that walk in "sequence" order
+; will always walk a particular map instance entries in the same order.
+
+; Building a map
+; The `zipmap` function can be used to "zip" together two sequences (the keys and vals) into a map:
+(def players #{"Alice", "Bob", "Kelly"})
+(zipmap players (repeat 0))
+
+; There are a variety of other ways to build up a map using CLojure's sequence functions.
+(into {} (map (fn [player] [player 0]) players))
+(reduce (fn [m player] (assoc m player 0)) {} players)
+
+; Combining maps
+; The `merge` function can be used to combine multiple maps into a single map:
+(def new-scores {"Angela" 300, "Jeff" 900, "Bob" 0})
+(merge scores new-scores)
+
+; We merged two maps here but you can pass more as well.
+
+; If both maps contain the same key, the rightmost one wins. Alternately, you can use `merge-with` to supply
+; a function to invoke when there is a conflict:
+(def new-scores {"Fred" 550 "Angela" 900 "Sam" 1000})
+(merge-with + scores new-scores)
+
+; In the case of conflict, the function is called on both values to get the new value.
