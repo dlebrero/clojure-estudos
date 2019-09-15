@@ -79,3 +79,92 @@
     10 "x is 10"
     "x isn't 5 or 10"))
 (foo 11)
+
+; Iteration for Side Effects
+
+; dotimes
+;  * Evaluate expression n times
+;  * Returns `nil`
+(dotimes [i 3]
+  (println i))
+
+; doseq
+;   * Iterates over a sequence
+;   * If a lazy sequence, forces evaluation
+;   * Returns `nil`
+(doseq [n (range 3)]
+  (println n))
+
+; doseq with multiple bindings
+;   * Similar to nested `foreach` loops
+;   * Processes all permutations of sequence content
+;   * Returns `nil`
+(doseq [letter [:a :b]
+        number (range 3)]                                   ; list of 0, 1, 2
+  (prn [letter number]))
+
+; Clojure's for
+;   * List comprehension, not a for-loop
+;   * Generator function for sequence permutation
+;   * Bindings behave like `doseq`
+(for [letter [:a :b]
+      number (range 3)]                                     ; list of 0, 1, 2
+  [letter number])
+
+; Recursion
+
+; Recursion and Iteration
+;   * Clojure provides recur and the sequence abstraction
+;   * `recur` is "classic" recursion
+;     * Consumers don’t control it, considered a lower-level facility
+;   * Sequences represent iteration as values
+;     * Consumers can partially iterate
+;   * Reducers represent iteration as function composition
+;     * Added in Clojure 1.5, not covered here
+
+; loop and recur
+;   * Functional looping construct
+;     * `loop` defines bindings
+;     * `recur` re-executes `loop` with new bindings
+;   * Prefer higher-order library functions instead
+(loop [i 0]
+  (if (< i 10)
+    (recur (inc i))
+    i))
+
+; defn and recur
+;   * Function arguments are implicit `loop` bindings
+(defn increase [i]
+  (if (< i 10)
+    (recur (inc i))
+    i))
+
+; Exceptions
+
+; Exception handling
+(try
+  (/ 2 1)
+  (catch ArithmeticException e
+    "divide by zero")
+  (finally
+    (println "cleanup")))
+
+; Exceptions with Clojure data
+;   * `ex-info` takes a message and a map
+;   * `ex-data` gets the map back out
+;     * Or `nil` if not created with `ex-info`
+(try
+  (throw (ex-info "There was a problem" {:detail 42}))
+  (catch Exception e
+    (prn (:detail (ex-data e)))))
+
+; with-open
+(let [f (clojure.java.io/writer "/tmp/new")]
+  (try
+    (.write f "some text")
+    (finally
+      (.close f))))
+
+; Can be written:
+(with-open [f (clojure.java.io/writer "/tmp/new")]
+  (.write f "some text"))
