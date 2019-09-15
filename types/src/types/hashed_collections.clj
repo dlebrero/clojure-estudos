@@ -117,3 +117,15 @@
 (merge-with + scores new-scores)
 
 ; In the case of conflict, the function is called on both values to get the new value.
+
+; Sorted maps
+; Similar to sorted sets, sorted maps maintain the keys in sorted order based on a comparator, using `compare` as the
+; default comparator function.
+(def sm (sorted-map
+          "Bravo" 204,
+          "Alfa" 35,
+          "Sigma" 99,
+          "Charlie" 100))
+(println sm)
+(keys sm)
+(vals sm)
