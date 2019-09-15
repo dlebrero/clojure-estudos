@@ -37,3 +37,33 @@
 ; Any function that "changes" a collection return a new instance. Your program will need to remember or pass along the
 ; changed instance to take advantage of it.
 
+; Lists
+
+; Lists are sequential linked lists that add new elements at the head of the list, instead of at the tail like vectors.
+
+; Constructing
+; Because lists are evaluated by invoking the first element as a function, we must quote a list to prevent evaluation.
+(def cards '(10 :ace :jack 9))
+
+; Lists are not indexed so they must be walker using `first` and `rest`.
+(first cards)
+(rest cards)
+
+; Adding elements
+; `conj` can be used to add elements to a list just as with vectors. However, `conj` always add elements where it
+; can be done in constant time for the data structure. In the case of lists, elements are added at the front:
+(conj cards :queen)
+
+; Stack access
+; Lists can also be used as a stack with peek and pop:
+(def stack '(:a :b))
+
+(peek stack)
+
+(pop stack)
+
+(clojure.repl/doc peek)
+(clojure.repl/doc pop)
+
+(println stack)
+
