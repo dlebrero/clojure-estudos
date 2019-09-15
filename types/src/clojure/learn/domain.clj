@@ -1,4 +1,4 @@
-(ns types.domain)
+(ns clojure.learn.domain)
 
 ; Representing application domain information
 ; When we need to represent many domain information with the same set of fields know in advance, you can use a map with keywords key.

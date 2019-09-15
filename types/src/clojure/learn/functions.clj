@@ -1,4 +1,4 @@
-(ns types.functions)
+(ns clojure.learn.functions)
 
 (defn greet []
   (println "Hello"))

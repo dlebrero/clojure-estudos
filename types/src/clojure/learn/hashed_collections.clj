@@ -1,4 +1,4 @@
-(ns types.hashed-collections)
+(ns clojure.learn.hashed-collections)
 
 ; Sets
 ; Sets are like mathematical sets - unordered and with no duplicates.

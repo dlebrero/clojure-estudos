@@ -1,4 +1,4 @@
-(ns types.types)
+(ns clojure.learn.types)
 (require '[clojure.repl :refer :all])
 
 '(1 2 3)

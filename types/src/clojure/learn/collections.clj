@@ -1,4 +1,4 @@
-(ns types.collections)
+(ns clojure.learn.collections)
 
 [1 2 3]
 
