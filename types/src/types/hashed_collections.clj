@@ -31,4 +31,26 @@
 
 ; `into` returns a collection of the same type as its first argument.
 
+; Maps
+; Maps are represented as alternating keys and values surrounded by `{` and `}`.
+(def scores {"Fred"   1400
+             "Bob"    1240
+             "Angela" 1024})
 
+; When Clojure prints a map at the REPL, it will put `,'s between each key/value pair. These are purely used for readability
+; - commas are treated as whitespace in Clojure. Feel free to use them in cases where they help you!
+(println scores)
+(def scores {"Fred"   1400,
+             "Bob"    1240,
+             "Angela" 1024})
+
+; Adding new key-value pairs
+; New values are added to maps with the `assoc` (short for "associate") function:
+(assoc scores "Sally" 0)
+
+; If the key used in `assoc` already exists, the value is replaced.
+(assoc scores "Bob" 0)
+
+; Removing key-value pairs
+; The complementary operation for removing key-value pairs is `dissoc` ("dissociate"):
+(dissoc scores "Bob")
