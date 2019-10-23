@@ -3,12 +3,10 @@
             [ring.mock.request :as mock]
             [calculator.handler :refer :all]))
 
+; TODO: Corrigir teste da adição.
 (deftest test-app
-  (testing "main route"
-    (let [response (app (mock/request :get "/"))]
-      (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
-
-  (testing "not-found route"
-    (let [response (app (mock/request :get "/invalid"))]
-      (is (= (:status response) 404)))))
+  (testing "Testando função de adição."
+    (is (= (app (-> (mock/request :post "/api/sum")
+                    (mock/json-body {:x 1 :y 2})))
+           {:status 200
+            :body   {:status 200 :result 3}}))))
