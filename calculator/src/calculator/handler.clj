@@ -9,6 +9,9 @@
 
 (defroutes app-routes
            (GET "/api/sum" [x y] (response {:result (addition x y)}))
+           (GET "/api/sub" [x y] (response {:result (subtract x y)}))
+           (GET "/api/mult" [x y] (response {:result (multiply x y)}))
+           (GET "/api/div" [x y] (response {:result (divide x y)}))
            (route/not-found "Not Found"))
 
 (def app
