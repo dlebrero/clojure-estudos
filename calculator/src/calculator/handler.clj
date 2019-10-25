@@ -1,20 +1,9 @@
 (ns calculator.handler
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
-            [compojure.handler :as handler]
-            [ring.middleware.json :as json]
-            [ring.util.response :refer [response]]
-            [calculator.core :refer :all]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+  (:require [ring.adapter.jetty :as jetty]))
 
-(defroutes app-routes
-           (GET "/api/sum" [x y] (response {:result (addition x y)}))
-           (GET "/api/sub" [x y] (response {:result (subtract x y)}))
-           (GET "/api/mult" [x y] (response {:result (multiply x y)}))
-           (GET "/api/div" [x y] (response {:result (divide x y)}))
-           (route/not-found "Not Found"))
-
-(def app
-  (-> (handler/api app-routes)
-      (json/wrap-json-params)
-      (json/wrap-json-response)))
+(defn -main "A very simple calculator" [port-number]
+  (jetty/run-jetty
+    (fn [request] {:status  200
+                   :body    "<h1>Hello, Clojure World</h1>  <p>Welcome to your first Clojure app.  This message is returned regardless of the request, sorry</p>"
+                   :headers {}})
+    {:port (Integer. port-number)}))
