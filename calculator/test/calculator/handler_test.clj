@@ -5,7 +5,7 @@
             [calculator.handler :refer :all]))
 
 (defn parse-body [body]
-  (cheshire/parse-string (slurp body) true))
+  (cheshire/parse-string body true))
 
 (deftest test-app
 
