@@ -1,17 +1,14 @@
 (ns calculator.handler
   (:require [compojure.core :refer :all]
-            [compojure.handler :as handler]
             [compojure.route :as route]
+            [compojure.handler :as handler]
             [ring.middleware.json :as json]
             [ring.util.response :refer [response]]
-            [calculator.core :refer :all]))
+            [calculator.core :refer :all]
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
 (defroutes app-routes
-           (POST "/api/sum" {:keys [params]}
-             (let [{:keys [x y]} params]
-               (response {:status 200
-                          :result (addition x y)})))
-           (route/resources "/")
+           (GET "/api/sum" [x y] (response {:result (addition x y)}))
            (route/not-found "Not Found"))
 
 (def app

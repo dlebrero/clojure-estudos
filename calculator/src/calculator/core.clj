@@ -1,4 +1,4 @@
 (ns calculator.core)
 
 (defn addition [x y]
-  (+ x y))
+  (+ (Long/parseLong x)  (Long/parseLong y)))
